@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { stringify } from 'lossless-json'
 import Headers from '@/components/Headers.vue'
 import Code from '@/components/Code.vue'
 import TopBar from '@/components/TopBar.vue'
@@ -34,9 +35,12 @@ watch(() => props.entry, async () => {
 
   try {
     const { data: _data, errors } = await props.entry.response.getResponse()
-    data.data = JSON.stringify(errors || _data, null, 2)
+    data.data = stringify({
+      url: props.entry?.request?.url,
+      result: errors || _data,
+    }, undefined, 2) ?? ''
   }
-  catch (e) {
+  catch (e: any) {
     data.parseError = e.message
   }
 }, {
