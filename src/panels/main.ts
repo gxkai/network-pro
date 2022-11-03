@@ -66,7 +66,7 @@ app.use(GlobalCmComponent, {
     foldGutter: true,
     styleActiveLine: true,
     lineNumbers: true,
-    readOnly: true,
+    readOnly: false,
     scrollbarStyle: 'overlay',
     gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter'],
     dialogOptions: {
